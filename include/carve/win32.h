@@ -5,7 +5,7 @@
 #pragma warning (disable : 4996)
 #pragma warning (disable : 4786)
 
-#include <string.h>
+#include <cstring>
 #include <stdlib.h>
 
 inline int strcasecmp(const char *a, const char *b) {
@@ -21,7 +21,9 @@ inline long random() {
 }
 
 #if defined(_MSC_VER)
+#if(_MSC_VER < 1800)
 #  include <carve/cbrt.h>
+#endif
 
 #if _MSC_VER < 1300
 // intptr_t is an integer type that is big enough to hold a pointer

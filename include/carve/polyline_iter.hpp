@@ -25,11 +25,15 @@
 #pragma once
 
 #include <iterator>
-#include <iterator>
 #include <limits>
 #include <list>
 
 #include <carve/polyline_decl.hpp>
+
+#if defined(_WIN32) && defined(_MSC_VER)
+#include <basetsd.h>
+typedef SSIZE_T ssize_t;
+#endif
 
 namespace carve {
 namespace line {

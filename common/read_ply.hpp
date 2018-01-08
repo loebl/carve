@@ -27,12 +27,11 @@
 #include <carve/carve.hpp>
 
 #include <carve/matrix.hpp>
-#include <carve/poly.hpp>
-
-#include <fstream>
-#include <istream>
 
 #include <carve/input.hpp>
+
+#include <fstream>
+
 
 bool readPLY(
     std::istream& in, carve::input::Input& inputs,

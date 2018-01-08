@@ -38,8 +38,8 @@
 #include <string>
 #include <utility>
 #include <vector>
-
-#include "write_ply.hpp"
+#include <functional>
+#include <iterator>
 
 namespace carve {
 namespace mesh {
@@ -1420,7 +1420,7 @@ class MeshSimplifier {
   }
 
   size_t removeLowVolumeManifolds(meshset_t* meshset, double min_abs_volume) {
-    size_t n_removed;
+    size_t n_removed = 0;
     for (size_t i = 0; i < meshset->meshes.size(); ++i) {
       if (fabs(meshset->meshes[i]->volume()) < min_abs_volume) {
         delete meshset->meshes[i];
@@ -1431,7 +1431,7 @@ class MeshSimplifier {
     meshset->meshes.erase(
         std::remove_if(
             meshset->meshes.begin(), meshset->meshes.end(),
-            std::bind2nd(std::equal_to<mesh_t*>(), (mesh_t*)nullptr)),
+            std::bind(std::equal_to<mesh_t*>(), std::placeholders::_1,(mesh_t*)nullptr)),
         meshset->meshes.end());
     return n_removed;
   }

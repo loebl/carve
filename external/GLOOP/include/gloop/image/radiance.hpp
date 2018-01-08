@@ -29,7 +29,7 @@
 
 #pragma once
 
-#if (defined WIN32) || (defined _WIN32)
+#if (defined _WIN32) && (_MSC_VER < 1800)
   typedef char int8_t;
   typedef short int16_t;
   typedef long int32_t;

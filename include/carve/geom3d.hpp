@@ -62,9 +62,9 @@ bool fitPlane(iter_t begin, iter_t end, adapt_t adapt, Plane& plane) {
   }
 
   Vector C;
+  Vector n; //moved here, VC++ optimize bug?
   carve::geom::centroid(p.begin(), p.end(), C);
 
-  Vector n;
 
   if (p.size() == 3) {
     n = cross(p[1] - p[0], p[2] - p[0]);

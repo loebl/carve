@@ -31,18 +31,15 @@
 #endif
 
 #include <carve/djset.hpp>
-
 #include <carve/geom.hpp>
 #include <carve/poly.hpp>
-
 #include <carve/octree_impl.hpp>
-
 #include <carve/timing.hpp>
-
-#include <algorithm>
-
 #include <carve/mesh.hpp>
+
 #include <random>
+#include <algorithm>
+#include <iterator>
 
 namespace {
 bool emb_test(carve::poly::Polyhedron* poly,

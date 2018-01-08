@@ -29,8 +29,9 @@
 #include <carve/mesh.hpp>
 #include <carve/mesh_impl.hpp>
 #include <carve/rtree.hpp>
-
 #include <carve/poly.hpp>
+
+#include <functional>
 
 namespace {
 inline double CALC_X(const carve::geom::plane<3>& p, double y, double z) {
@@ -402,7 +403,7 @@ void FaceStitcher::extractPath(std::vector<const vertex_t*>& path) {
   while ((*iter).second.size() == 2) {
     prev =
         *std::find_if((*iter).second.begin(), (*iter).second.end(),
-                      std::bind2nd(std::not_equal_to<const vertex_t*>(), next));
+                      std::bind(std::not_equal_to<const vertex_t*>(), std::placeholders::_1, next));
     next = vert;
     vert = prev;
     iter = edge_graph.find(vert);

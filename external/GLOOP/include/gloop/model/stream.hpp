@@ -32,7 +32,7 @@
 #include <gloop/exceptions.hpp>
 #include <gloop/ref.hpp>
 
-#ifdef WIN32
+#if defined(_WIN32) && (_MSC_VER < 1800)
 
 typedef char int8_t;
 typedef short int16_t;

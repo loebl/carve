@@ -590,8 +590,8 @@ bool sat_normal(const vec3 tri_a[3], const vec3 tri_b[3]) {
 
 // returns true if no intersection, based upon edge^a_i and edge^b_j separating
 // axis.
-bool sat_edge(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i,
-              unsigned j) {}
+//bool sat_edge(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i,
+//              unsigned j) {}
 
 // 0 = not intersecting
 // 1 = shared vertex
