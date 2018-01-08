@@ -34,13 +34,18 @@ typedef unsigned long uintptr_t;
 
 #  if _MSC_VER < 1600
 // stdint.h is not available before VS2010
-typedef char int8_t;
-typedef short int16_t;
-typedef long int32_t;
+#if defined(_WIN32) && !defined(__MINGW32__)
+/* The __intXX are built-in types of the visual compiler! So we don't
+   need to include anything else here. */
 
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned long uint32_t;
+typedef signed __int8  int8_t;
+typedef signed __int16 int16_t;
+typedef signed __int32 int32_t;
+
+typedef unsigned __int8  uint8_t;
+typedef unsigned __int16 uint16_t;
+typedef unsigned __int32 uint32_t;
+#endif
 
 typedef __int64 int64_t;
 typedef unsigned __int64 uint64_t;

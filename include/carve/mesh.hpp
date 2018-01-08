@@ -747,12 +747,12 @@ class MeshSet {
 
     FaceIter operator++(int) {
       FaceIter tmp = *this;
-      fwd(1);
+      tmp.fwd(1);
       return tmp;
     }
     FaceIter operator+(int v) {
       FaceIter tmp = *this;
-      adv(v);
+      tmp.adv(v);
       return tmp;
     }
     FaceIter& operator++() {
@@ -766,12 +766,12 @@ class MeshSet {
 
     FaceIter operator--(int) {
       FaceIter tmp = *this;
-      rev(1);
+      tmp.rev(1);
       return tmp;
     }
     FaceIter operator-(int v) {
       FaceIter tmp = *this;
-      adv(-v);
+      tmp.adv(-v);
       return tmp;
     }
     FaceIter& operator--() {
