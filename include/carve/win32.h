@@ -16,7 +16,7 @@ inline void srandom(unsigned long input) {
   srand(input);
 }
 
-inline long random() {
+inline int random() {
   return rand();
 }
 

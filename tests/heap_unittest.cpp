@@ -32,6 +32,7 @@
 #include <carve/heap.hpp>
 
 #include <map>
+#include <functional>
 
 struct record_t {
   std::map<int, size_t>& pos;

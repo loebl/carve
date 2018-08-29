@@ -119,7 +119,7 @@
 //#include <sys/time.h>
 
 #if defined(_MSC_VER)
-int random() { return rand(); }
+#define random() rand()
 #endif
 
 
