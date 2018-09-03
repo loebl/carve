@@ -39,7 +39,7 @@
  * Return cube root of x
  */
 
-inline double cbrt(double x) {
+static inline double sun_cbrt(double x) {
 
   static const unsigned 
     B1 = 715094163, /* B1 = (682-0.03306235651)*2**20 */
