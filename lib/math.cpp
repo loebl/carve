@@ -28,7 +28,6 @@
 
 #include <carve/math.hpp>
 #include <carve/matrix.hpp>
-#include <carve/cbrt.h>
 
 #include <iostream>
 #include <limits>
@@ -70,7 +69,7 @@ void cplx_cbrt(double re, double im, double& re_1, double& im_1, double& re_2,
     re_1 = re_2 = re_3 = re;
     im_1 = im_2 = im_3 = im;
   } else {
-    double r = sun_cbrt(sqrt(re * re + im * im));
+    double r = std::cbrt(sqrt(re * re + im * im));
     double t = atan2(im, re) / 3.0;
     re_1 = r * cos(t);
     im_1 = r * sin(t);
@@ -145,8 +144,8 @@ void static cubic_roots(double c3, double c2, double c1, double c0,
     double dis_sqrt = sqrt(dis);
     double r_p = yN - dis_sqrt;
     double r_q = yN + dis_sqrt;
-    double p = sun_cbrt(fabs(r_p) / (2.0 * c3));
-    double q = sun_cbrt(fabs(r_q) / (2.0 * c3));
+    double p = std::cbrt(fabs(r_p) / (2.0 * c3));
+    double q = std::cbrt(fabs(r_q) / (2.0 * c3));
 
     if (r_p > 0.0) {
       p = -p;
@@ -180,7 +179,7 @@ void static cubic_roots(double c3, double c2, double c1, double c0,
   } else {
     // Three real roots (two or three equal).
     double r = yN / (2.0 * c3);
-    double delta = sun_cbrt(r);
+    double delta = std::cbrt(r);
 
     _r[0] = xN + delta;
     _r[1] = xN + delta;
@@ -332,8 +331,8 @@ void eigSolveSymmetric(const Matrix3& m, double& l1, carve::geom::vector<3>& e1,
     e3.y = 0.0;
     e3.z = 1.0;
   } else if (Q > 0) {
-    l1 = l2 = c2 / 3.0 + sun_cbrt(b / 2.0);
-    l3 = c2 / 3.0 - 2.0 * sun_cbrt(b / 2.0);
+    l1 = l2 = c2 / 3.0 + std::cbrt(b / 2.0);
+    l3 = c2 / 3.0 - 2.0 * std::cbrt(b / 2.0);
 
     eig2(m, l1, e1, e2);
     eig1(m, l3, e3);
@@ -341,7 +340,7 @@ void eigSolveSymmetric(const Matrix3& m, double& l1, carve::geom::vector<3>& e1,
     double t = atan2(sqrt(-Q), -b / 2.0);
     double cos_t3 = cos(t / 3.0);
     double sin_t3 = sin(t / 3.0);
-    double r = sun_cbrt(sqrt(b * b / 4.0 - Q));
+    double r = std::cbrt(sqrt(b * b / 4.0 - Q));
 
     l1 = c2 / 3.0 + 2 * r * cos_t3;
     l2 = c2 / 3.0 - r * (cos_t3 + M_SQRT_3 * sin_t3);
