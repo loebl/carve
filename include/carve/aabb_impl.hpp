@@ -25,14 +25,9 @@
 #pragma once
 
 #include <algorithm>
-#include <carve/carve.hpp>
 
 #include <carve/geom3d.hpp>
 #include <carve/vector.hpp>
-
-#include <carve/geom.hpp>
-
-#include <vector>
 
 namespace carve {
 namespace geom {

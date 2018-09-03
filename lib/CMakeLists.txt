@@ -1,7 +1,6 @@
 include_directories("${carve_SOURCE_DIR}/include")
 
 add_library(carve
-            aabb.cpp
             carve.cpp
             convex_hull.cpp
             csg.cpp
