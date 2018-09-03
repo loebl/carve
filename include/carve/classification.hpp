@@ -87,8 +87,8 @@ static inline unsigned class_to_class_bit(FaceClass f) {
 
 enum EdgeClass { EDGE_UNK = -2, EDGE_OUT = -1, EDGE_ON = 0, EDGE_IN = 1 };
 
-const char* ENUM(FaceClass f);
-const char* ENUM(PointClass p);
+CARVE_API const char* ENUM(FaceClass f);
+CARVE_API const char* ENUM(PointClass p);
 
 struct ClassificationInfo {
   const carve::mesh::Mesh<3>* intersected_mesh;
