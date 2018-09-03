@@ -5,6 +5,15 @@
 #pragma warning (disable : 4996)
 #pragma warning (disable : 4786)
 
+#ifdef CARVE_BUILD_SHARED
+#define CARVE_API __declspec(dllexport)
+#elif CARVE_SHARED
+#define CARVE_API __declspec(dllimport)
+#else
+#define CARVE_API
+#endif
+
+
 #include <cstring>
 #include <stdlib.h>
 

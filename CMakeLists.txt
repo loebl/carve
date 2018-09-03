@@ -53,10 +53,15 @@ if (BUILD_COVERAGE)
 endif(BUILD_COVERAGE)
 
 if(WIN32)
-  set(BUILD_SHARED_LIBS OFF) # until everything is exported
   add_definitions(-D_USE_MATH_DEFINES)
   add_definitions(-DNOMINMAX)
 endif(WIN32)
+
+if(BUILD_SHARED_LIBS)
+  # use CARVE_BUILD_SHARED while creating the carve library
+  # use CARVE_SHARED while building a program against it
+  add_definitions(-DCARVE_BUILD_SHARED)
+endif(BUILD_SHARED_LIBS)
 
 find_package(OpenMP)
 
