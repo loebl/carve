@@ -30,17 +30,6 @@ inline int random() {
 }
 
 #if defined(_MSC_VER)
-#if(_MSC_VER < 1800)
-#  include <carve/cbrt.h>
-#endif
-
-#if _MSC_VER < 1300
-// intptr_t is an integer type that is big enough to hold a pointer
-// It is not defined in VC6 so include a definition here for the older compiler
-typedef long intptr_t;
-typedef unsigned long uintptr_t;
-#endif
-
 #  if _MSC_VER < 1600
 // stdint.h is not available before VS2010
 #if defined(_WIN32) && !defined(__MINGW32__)
