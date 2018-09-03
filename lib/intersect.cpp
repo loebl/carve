@@ -101,6 +101,17 @@ static carve::mesh::MeshSet<3>* faceLoopsToPolyhedron(
 #endif
 
 namespace {
+static inline double rangeSeparation(const std::pair<double, double>& a,
+                                     const std::pair<double, double>& b) {
+  if (a.second < b.first) {
+    return b.first - a.second;
+  } else if (b.second < a.first) {
+    return a.first - b.second;
+  } else {
+    return 0.0;
+  }
+}
+
 /**
  * \brief Sort a range [\a beg, \a end) of vertices in order of increasing dot
  * product of vertex - \a base on \dir.
@@ -953,7 +964,7 @@ void carve::csg::CSG::generateIntersectionCandidates(
             fa->rangeInDirection(fa->plane.N, fa->edge->vert->v);
         std::pair<double, double> b_ra =
             fb->rangeInDirection(fa->plane.N, fa->edge->vert->v);
-        if (carve::rangeSeparation(a_ra, b_ra) > carve::EPSILON) {
+        if (rangeSeparation(a_ra, b_ra) > carve::EPSILON) {
           continue;
         }
 
@@ -961,7 +972,7 @@ void carve::csg::CSG::generateIntersectionCandidates(
             fa->rangeInDirection(fb->plane.N, fb->edge->vert->v);
         std::pair<double, double> b_rb =
             fb->rangeInDirection(fb->plane.N, fb->edge->vert->v);
-        if (carve::rangeSeparation(a_rb, b_rb) > carve::EPSILON) {
+        if (rangeSeparation(a_rb, b_rb) > carve::EPSILON) {
           continue;
         }
 

@@ -207,16 +207,6 @@ inline bool is_sorted(iter_t first, iter_t last, pred_t pred) {
   return true;
 }
 
-inline double rangeSeparation(const std::pair<double, double>& a,
-                              const std::pair<double, double>& b) {
-  if (a.second < b.first) {
-    return b.first - a.second;
-  } else if (b.second < a.first) {
-    return a.first - b.second;
-  } else {
-    return 0.0;
-  }
-}
 }  // namespace carve
 
 #if defined(_MSC_VER)
