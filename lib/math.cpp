@@ -116,7 +116,7 @@ void quadratic_roots(double c2, double c1, double c0,
   }
 }
 
-void cubic_roots(double c3, double c2, double c1, double c0,
+void static cubic_roots(double c3, double c2, double c1, double c0,
                  std::vector<Root>& roots) {
   int n_sol = 0;
   double _r[3];
