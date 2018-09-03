@@ -30,41 +30,42 @@
 #include "csg_detail.hpp"
 
 const char* carve::csg::ENUM(carve::csg::FaceClass f) {
-  if (f == FACE_ON_ORIENT_OUT) {
+  switch (f)
+  {
+  case carve::csg::FACE_ON_ORIENT_OUT:
     return "FACE_ON_ORIENT_OUT";
-  }
-  if (f == FACE_OUT) {
+  case carve::csg::FACE_OUT:
     return "FACE_OUT";
-  }
-  if (f == FACE_IN) {
+  case carve::csg::FACE_ON:
+    return "FACE_ON";
+  case carve::csg::FACE_IN:
     return "FACE_IN";
-  }
-  if (f == FACE_ON_ORIENT_IN) {
+  case carve::csg::FACE_ON_ORIENT_IN:
     return "FACE_ON_ORIENT_IN";
+  case carve::csg::FACE_UNCLASSIFIED:
+  default:
+    return "???";
   }
-  return "???";
 }
 
 const char* carve::csg::ENUM(carve::PointClass p) {
-  if (p == POINT_UNK) {
+  switch (p)
+  {
+  case carve::POINT_UNK:
     return "POINT_UNK";
-  }
-  if (p == POINT_OUT) {
+  case carve::POINT_OUT:
     return "POINT_OUT";
-  }
-  if (p == POINT_ON) {
+  case carve::POINT_ON:
     return "POINT_ON";
-  }
-  if (p == POINT_IN) {
+  case carve::POINT_IN:
     return "POINT_IN";
-  }
-  if (p == POINT_VERTEX) {
+  case carve::POINT_VERTEX:
     return "POINT_VERTEX";
-  }
-  if (p == POINT_EDGE) {
+  case carve::POINT_EDGE:
     return "POINT_EDGE";
+  default:
+    return "???";
   }
-  return "???";
 }
 
 void carve::csg::detail::LoopEdges::addFaceLoop(FaceLoop* fl) {
