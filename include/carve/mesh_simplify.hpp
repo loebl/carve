@@ -40,6 +40,7 @@
 #include <vector>
 #include <functional>
 #include <iterator>
+#include <unordered_set>
 
 namespace carve {
 namespace mesh {

@@ -29,6 +29,7 @@
 #include <carve/csg.hpp>
 #include <carve/pointset.hpp>
 #include <carve/polyline.hpp>
+#include <carve/collection.hpp>
 
 #include <iostream>
 #include <list>

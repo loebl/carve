@@ -36,6 +36,7 @@
 #include <carve/octree_impl.hpp>
 #include <carve/timing.hpp>
 #include <carve/mesh.hpp>
+#include <carve/collection.hpp>
 
 #include <random>
 #include <algorithm>

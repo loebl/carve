@@ -38,23 +38,11 @@
 #include <carve/win32.h>
 #endif
 
-#include <math.h>
-
-#include <iomanip>
-#include <list>
-#include <map>
-#include <set>
 #include <sstream>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
-
-#include <carve/collection.hpp>
-
-#include <carve/util.hpp>
-
-#include <stdarg.h>
+#include <functional>
+#include <iterator>
+#include <utility>
 
 #define STR(x) #x
 #define XSTR(x) STR(x)
@@ -66,12 +54,10 @@ namespace carve {
 static struct noinit_t {
 } NOINIT;
 
-inline std::string fmtstring(const char* fmt, ...);
-
 /**
  * \brief Base class for all Carve exceptions.
  */
-struct exception {
+struct CARVE_API exception {
  private:
   mutable std::string err;
   mutable std::ostringstream accum;
@@ -163,8 +149,8 @@ enum IntersectionClass {
   INTERSECT_PLANE = 4,
 };
 
-extern double EPSILON;
-extern double EPSILON2;
+CARVE_API extern double EPSILON;
+CARVE_API extern double EPSILON2;
 
 static inline void setEpsilon(double ep) {
   EPSILON = ep;
@@ -178,7 +164,7 @@ struct identity_t {
   const T& operator()(const T& t) const { return t; }
 };
 
-struct hash_pair {
+struct CARVE_API hash_pair {
   template <typename pair_t>
   size_t operator()(const pair_t& pair) const {
     size_t r = std::hash<typename pair_t::first_type>{}(pair.first);

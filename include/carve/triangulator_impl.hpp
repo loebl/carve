@@ -25,6 +25,7 @@
 #pragma once
 
 #include <carve/geom2d.hpp>
+#include <unordered_map>
 
 #if defined(CARVE_DEBUG)
 #include <iostream>

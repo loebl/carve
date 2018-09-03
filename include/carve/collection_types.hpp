@@ -26,8 +26,8 @@
 #pragma once
 
 #include <carve/carve.hpp>
-
 #include <carve/mesh.hpp>
+#include <unordered_set>
 
 namespace carve {
 namespace csg {
