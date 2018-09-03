@@ -15,7 +15,7 @@
 
 
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 
 inline int strcasecmp(const char *a, const char *b) {
   return _stricmp(a,b);
