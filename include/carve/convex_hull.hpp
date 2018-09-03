@@ -24,17 +24,12 @@
 
 #pragma once
 
-#include <algorithm>
-#include <list>
-#include <vector>
-
 #include <carve/carve.hpp>
-
 #include <carve/geom2d.hpp>
 
 namespace carve {
 namespace geom {
-std::vector<int> convexHull(const std::vector<carve::geom2d::P2>& points);
+CARVE_API std::vector<int> convexHull(const std::vector<carve::geom2d::P2>& points);
 
 template <typename project_t, typename polygon_container_t>
 std::vector<int> convexHull(const project_t& project,

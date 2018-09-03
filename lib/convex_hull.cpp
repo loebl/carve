@@ -33,7 +33,7 @@
 
 namespace {
 
-bool grahamScan(const std::vector<carve::geom2d::P2>& points, int vpp, int vp,
+static bool grahamScan(const std::vector<carve::geom2d::P2>& points, int vpp, int vp,
                 const std::vector<int>& ordered, int start,
                 std::vector<int>& result, int _i = 0) {
   carve::geom2d::P2 v1 = points[vp] - points[vpp];
