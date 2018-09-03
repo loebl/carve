@@ -125,8 +125,8 @@ sat_t sat_normal(const vec3 tri_a[3], const vec3 tri_b[3]) {
 // separating plane.
 // shared vertex case. only one vertex of b (k) to test - the third
 // (shared) vertex will have orientation equal to 0.
-bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i, unsigned j,
-               unsigned k) {
+static bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], size_t const i,
+               size_t const j, size_t const k) {
   double a;
   double b;
   a = orient3d_exact(tri_a[i], tri_a[(i + 1) % 3], tri_b[j],
@@ -140,8 +140,8 @@ bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i, unsigned j,
 
 // returns true if no intersection, based upon edge^a_i and vertex^b_j
 // separating plane.
-bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i,
-               unsigned j) {
+static bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], size_t const i,
+               size_t const j) {
   double a;
   double b_lo, b_hi;
   a = orient3d_exact(tri_a[i], tri_a[(i + 1) % 3], tri_b[j],
@@ -167,7 +167,7 @@ bool sat_plane(const vec3 tri_a[3], const vec3 tri_b[3], unsigned i,
 // returns: -1 - no intersection
 //           0 - touching
 //          +1 - intersection
-int sat_edge(const vec2 tri_a[3], const vec2 tri_b[3], unsigned i) {
+static int sat_edge(const vec2 tri_a[3], const vec2 tri_b[3], size_t const i) {
   return max3(dbl_sign(orient2d_exact(tri_a[i], tri_a[(i + 1) % 3], tri_b[0])),
               dbl_sign(orient2d_exact(tri_a[i], tri_a[(i + 1) % 3], tri_b[1])),
               dbl_sign(orient2d_exact(tri_a[i], tri_a[(i + 1) % 3], tri_b[2])));
@@ -176,8 +176,8 @@ int sat_edge(const vec2 tri_a[3], const vec2 tri_b[3], unsigned i) {
 // returns: -1 - no intersection
 //           0 - touching
 //          +1 - intersection
-bool sat_edge(const vec2 tri_a[3], const vec2 tri_b[3], unsigned i,
-              unsigned j) {
+static bool sat_edge(const vec2 tri_a[3], const vec2 tri_b[3], size_t const i,
+              size_t const j) {
   return std::max(dbl_sign(orient2d_exact(tri_a[i], tri_a[(i + 1) % 3],
                                           tri_b[(j + 1) % 3])),
                   dbl_sign(orient2d_exact(tri_a[i], tri_a[(i + 1) % 3],
