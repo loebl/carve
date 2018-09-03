@@ -25,7 +25,6 @@
 #pragma once
 
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
 
 namespace carve {
 namespace colour {
