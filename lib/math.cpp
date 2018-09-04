@@ -31,6 +31,7 @@
 
 #include <iostream>
 #include <limits>
+#include <vector>
 
 #include <stdio.h>
 

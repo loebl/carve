@@ -26,8 +26,6 @@
 
 #include <carve/carve.hpp>
 
-#include <vector>
-
 namespace carve {
 namespace geom {
 
@@ -35,15 +33,13 @@ template <unsigned ndim>
 struct aabb;
 
 // ========================================================================
-struct _uninitialized {};
-
 template <unsigned ndim>
 struct base {
   double v[ndim];
 };
 
 template <>
-struct base<2> {
+struct CARVE_API base<2> {
   union {
     double v[2];
     struct {
@@ -52,7 +48,7 @@ struct base<2> {
   };
 };
 template <>
-struct base<3> {
+struct CARVE_API base<3> {
   union {
     double v[3];
     struct {
@@ -61,7 +57,7 @@ struct base<3> {
   };
 };
 template <>
-struct base<4> {
+struct CARVE_API base<4> {
   union {
     double v[4];
     struct {
@@ -246,7 +242,7 @@ static inline double dotcross(const vector<3>& a, const vector<3>& b,
                               const vector<3>& c);
 
 // ========================================================================
-struct axis_pos {
+struct CARVE_API axis_pos {
   int axis;
   double pos;
 
