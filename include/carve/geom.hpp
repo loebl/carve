@@ -91,11 +91,10 @@ struct vector : public base<ndim> {
   vector<ndim>& operator=(const assign_t& t);
   std::string asStr() const;
 
-  aabb<ndim> getAABB() const;
-
   vector() { setZero(); }
   vector(noinit_t) {}
 };
+
 
 template <unsigned ndim>
 vector<ndim> vector<ndim>::ZERO() {
