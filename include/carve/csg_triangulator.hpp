@@ -35,9 +35,9 @@ namespace detail {
 template <bool with_improvement>
 class CarveTriangulator : public csg::CSG::Hook {
  public:
-  CarveTriangulator() {}
+  CarveTriangulator() = default;
 
-  ~CarveTriangulator() override {}
+  ~CarveTriangulator() override = default;
 
   void processOutputFace(std::vector<carve::mesh::MeshSet<3>::face_t*>& faces,
                          const carve::mesh::MeshSet<3>::face_t* orig,
@@ -93,11 +93,11 @@ class CarveTriangulator : public csg::CSG::Hook {
 typedef detail::CarveTriangulator<false> CarveTriangulator;
 typedef detail::CarveTriangulator<true> CarveTriangulatorWithImprovement;
 
-class CarveTriangulationImprover : public csg::CSG::Hook {
+class CARVE_API CarveTriangulationImprover : public csg::CSG::Hook {
  public:
-  CarveTriangulationImprover() {}
+  CarveTriangulationImprover() = default;
 
-  ~CarveTriangulationImprover() override {}
+  ~CarveTriangulationImprover() override = default;
 
   void processOutputFace(std::vector<carve::mesh::MeshSet<3>::face_t*>& faces,
                          const carve::mesh::MeshSet<3>::face_t* orig,
@@ -165,14 +165,14 @@ class CarveTriangulationImprover : public csg::CSG::Hook {
   }
 };
 
-class CarveTriangulationQuadMerger : public csg::CSG::Hook {
+class CARVE_API CarveTriangulationQuadMerger : public csg::CSG::Hook {
   // this code is incomplete.
   typedef std::map<V2, F2> edge_map_t;
 
  public:
-  CarveTriangulationQuadMerger() {}
+  CarveTriangulationQuadMerger() = default;
 
-  ~CarveTriangulationQuadMerger() override {}
+  ~CarveTriangulationQuadMerger() override = default;
 
   double scoreQuad(edge_map_t::iterator i, edge_map_t& edge_map) {
     if (!(*i).second.first || !(*i).second.second) {
@@ -270,11 +270,11 @@ class CarveTriangulationQuadMerger : public csg::CSG::Hook {
   }
 };
 
-class CarveHoleResolver : public csg::CSG::Hook {
+class CARVE_API CarveHoleResolver : public csg::CSG::Hook {
  public:
-  CarveHoleResolver() {}
+  CarveHoleResolver() = default;
 
-  ~CarveHoleResolver() override {}
+  ~CarveHoleResolver() override = default;
 
   bool findRepeatedEdges(
       const std::vector<carve::mesh::MeshSet<3>::vertex_t*>& vertices,
