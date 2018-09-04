@@ -2,8 +2,11 @@
 // All rights reserved.
 #pragma once
 
+#if defined(_MSC_VER)
 #pragma warning (disable : 4996)
 #pragma warning (disable : 4786)
+#pragma warning (disable : 4201)
+#endif
 
 #ifdef CARVE_BUILD_SHARED
 #define CARVE_API __declspec(dllexport)
@@ -50,4 +53,10 @@ typedef unsigned __int64 uint64_t;
 #  else
 #    include <stdint.h>
 #  endif
+#endif
+
+#if(_MSC_VER < 1900)
+static inline double round(double value) {
+  return (value >= 0) ? floor(value + 0.5) : ceil(value - 0.5);
+}
 #endif

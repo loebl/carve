@@ -28,8 +28,6 @@
 #include <carve/config.h>
 #elif defined(XCODE_BUILD)
 #include <carve/xcode_config.h>
-#elif defined(_MSC_VER)
-#include <carve/vcpp_config.h>
 #else
 #include <carve/config.h>
 #endif
