@@ -1,5 +1,13 @@
 include_directories("${carve_SOURCE_DIR}/include")
 
+# When building static libraries, cmake won't expose the created pdb file
+# (for installing with TARGET_PDB_FILE)
+# So we embed debug information into the static library using the /Z7 debugging format
+if(MSVC AND NOT BUILD_SHARED_LIBS)
+    string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_DEBUG  ${CMAKE_CXX_FLAGS_DEBUG})
+    string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO  ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
+ENDIF()
+
 add_library(carve
             carve.cpp
             convex_hull.cpp
@@ -35,5 +43,12 @@ set_target_properties(carve PROPERTIES
                       SOVERSION "${carve_VERSION_MAJOR}.${carve_VERSION_MINOR}")
 
 install(TARGETS carve
-        LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib"
-        ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
+
+if(MSVC AND BUILD_SHARED_LIBS)
+    IF(CMAKE_GENERATOR MATCHES "^Visual Studio")
+        install(FILES  $<TARGET_PDB_FILE:carve> DESTINATION lib OPTIONAL)
+    ENDIF()
+ENDIF ()
