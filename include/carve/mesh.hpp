@@ -243,7 +243,7 @@ class Edge : public tagable {
 // A Face contains a pointer to the beginning of the half-edge
 // circular list that defines its boundary.
 template <unsigned ndim>
-class Face : public tagable {
+class CARVE_API Face : public tagable {
  public:
   typedef Vertex<ndim> vertex_t;
   typedef Edge<ndim> edge_t;
@@ -487,7 +487,7 @@ struct MeshOptions {
 };
 
 namespace detail {
-class FaceStitcher {
+class CARVE_API FaceStitcher {
   FaceStitcher();
   FaceStitcher(const FaceStitcher&);
   FaceStitcher& operator=(const FaceStitcher&);

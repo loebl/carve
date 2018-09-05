@@ -103,7 +103,7 @@ class Polyhedron : public Geometry<3> {
 
   Polyhedron(std::list<face_t>& _faces, bool _recalc = false);
 
-  Polyhedron(const std::vector<carve::geom3d::Vector>& vertices, int n_faces,
+  CARVE_API Polyhedron(const std::vector<carve::geom3d::Vector>& vertices, int n_faces,
              const std::vector<int>& face_indices);
 
   ~Polyhedron();

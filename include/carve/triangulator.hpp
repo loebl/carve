@@ -116,7 +116,7 @@ struct tri_idx {
  *                     indicies into poly.
  */
 
-void triangulate(const std::vector<carve::geom2d::P2>& poly,
+void CARVE_API triangulate(const std::vector<carve::geom2d::P2>& poly,
                  std::vector<tri_idx>& result);
 
 /**
