@@ -8,7 +8,7 @@
 #pragma warning (disable : 4201)
 #endif
 
-#ifdef CARVE_BUILD_SHARED
+#ifdef carve_EXPORTS
 #define CARVE_API __declspec(dllexport)
 #elif CARVE_SHARED
 #define CARVE_API __declspec(dllimport)

@@ -57,12 +57,6 @@ if(WIN32)
   add_definitions(-DNOMINMAX)
 endif(WIN32)
 
-if(BUILD_SHARED_LIBS)
-  # use CARVE_BUILD_SHARED while creating the carve library
-  # use CARVE_SHARED while building a program against it
-  add_definitions(-DCARVE_BUILD_SHARED)
-endif(BUILD_SHARED_LIBS)
-
 find_package(OpenMP)
 
 if(OPENMP_FOUND)
@@ -121,12 +115,12 @@ add_definitions(-DCMAKE_BUILD)
 
 include_directories(${carve_BINARY_DIR}/include)
 
-add_subdirectory(lib) 
-add_subdirectory(include) 
-add_subdirectory(common) 
-add_subdirectory(src) 
-add_subdirectory(examples) 
-add_subdirectory(tests) 
+add_subdirectory(lib)
+add_subdirectory(include)
+add_subdirectory(common)
+add_subdirectory(src)
+add_subdirectory(examples)
+add_subdirectory(tests)
 
 
 include(CTest)
