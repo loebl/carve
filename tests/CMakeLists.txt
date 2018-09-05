@@ -11,6 +11,10 @@ link_directories("${gloop_BINARY_DIR}")
 link_directories("${carve_BINARY_DIR}/lib")
 link_directories("${carve_BINARY_DIR}/common")
 
+if(BUILD_SHARED_LIBS)
+  add_definitions(-DCARVE_SHARED)
+endif()
+
 add_executable       (test_carve_polyhedrons_2          test_carve_polyhedrons_2.cpp)
 target_link_libraries(test_carve_polyhedrons_2          carve carve_fileformats gloop_model)
 

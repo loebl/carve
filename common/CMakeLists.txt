@@ -3,6 +3,10 @@ include_directories("${carve_SOURCE_DIR}/external/GLOOP/include")
 include_directories("${carve_SOURCE_DIR}/external/GLEW/include")
 include_directories("${carve_SOURCE_DIR}/external/GLUI/include")
 
+if(BUILD_SHARED_LIBS)
+  add_definitions(-DCARVE_SHARED)
+endif()
+
 add_library(carve_fileformats      STATIC read_ply.cpp write_ply.cpp)
 add_library(carve_misc             STATIC geometry.cpp)
 if(CARVE_WITH_GUI)

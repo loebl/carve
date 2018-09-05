@@ -8,6 +8,10 @@ else(GLEW_FOUND)
   include_directories("${carve_SOURCE_DIR}/external/GLEW/include")
 endif(GLEW_FOUND)
 
+if(BUILD_SHARED_LIBS)
+  add_definitions(-DCARVE_SHARED)
+endif()
+
 include_directories(${OPENGL_INCLUDE_DIR})
 
 include_directories("${carve_SOURCE_DIR}/common")
