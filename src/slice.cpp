@@ -49,7 +49,7 @@
 #include <string>
 #include <utility>
 
-#include <time.h>
+#include <ctime>
 
 struct Options : public opt::Parser {
   bool ascii;

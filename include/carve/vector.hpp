@@ -33,7 +33,7 @@
 #include <sstream>
 #include <algorithm>
 
-#include <math.h>
+#include <cmath>
 
 namespace carve {
 namespace geom3d {

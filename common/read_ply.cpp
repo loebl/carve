@@ -32,13 +32,13 @@
 #include <gloop/model/stream.hpp>
 #include <gloop/model/vtk_format.hpp>
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 #include <fstream>
 
 #ifndef WIN32
-#include <stdint.h>
+#include <cstdint>
 #endif
 
 namespace {

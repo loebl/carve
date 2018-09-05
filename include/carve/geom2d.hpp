@@ -33,8 +33,6 @@
 
 #include <vector>
 
-#include <math.h>
-
 #if defined(CARVE_DEBUG)
 #include <iostream>
 #endif

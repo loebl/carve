@@ -28,8 +28,6 @@
 
 #include <carve/math_constants.hpp>
 
-#include <math.h>
-
 namespace carve {
 namespace geom {
 template <unsigned ndim>

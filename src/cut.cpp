@@ -46,7 +46,7 @@
 #include <string>
 #include <utility>
 
-#include <time.h>
+#include <ctime>
 typedef std::vector<std::string>::iterator TOK;
 
 struct Options : public opt::Parser {
