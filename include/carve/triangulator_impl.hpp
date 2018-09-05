@@ -184,7 +184,7 @@ static inline bool pointInTriangle(const vertex_info* a, const vertex_info* b,
  * during a triangulation operation.
  */
 
-struct vertex_info {
+struct CARVE_API vertex_info {
   vertex_info* prev;
   vertex_info* next;
   carve::geom2d::P2 p;
@@ -244,13 +244,13 @@ static inline bool pointInTriangle(const vertex_info* a, const vertex_info* b,
   return !isLeft(a, c, d) && !isLeft(b, a, d) && !isLeft(c, b, d);
 }
 
-size_t removeDegeneracies(vertex_info*& begin,
+size_t CARVE_API removeDegeneracies(vertex_info*& begin,
                           std::vector<carve::triangulate::tri_idx>& result);
 
-bool splitAndResume(vertex_info* begin,
+bool CARVE_API splitAndResume(vertex_info* begin,
                     std::vector<carve::triangulate::tri_idx>& result);
 
-bool doTriangulate(vertex_info* begin,
+bool CARVE_API doTriangulate(vertex_info* begin,
                    std::vector<carve::triangulate::tri_idx>& result);
 
 typedef std::pair<unsigned, unsigned> vert_edge_t;

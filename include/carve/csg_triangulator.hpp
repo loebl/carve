@@ -93,7 +93,7 @@ class CarveTriangulator : public csg::CSG::Hook {
 typedef detail::CarveTriangulator<false> CarveTriangulator;
 typedef detail::CarveTriangulator<true> CarveTriangulatorWithImprovement;
 
-class CARVE_API CarveTriangulationImprover : public csg::CSG::Hook {
+class CarveTriangulationImprover : public csg::CSG::Hook {
  public:
   CarveTriangulationImprover() = default;
 
@@ -165,7 +165,7 @@ class CARVE_API CarveTriangulationImprover : public csg::CSG::Hook {
   }
 };
 
-class CARVE_API CarveTriangulationQuadMerger : public csg::CSG::Hook {
+class CarveTriangulationQuadMerger : public csg::CSG::Hook {
   // this code is incomplete.
   typedef std::map<V2, F2> edge_map_t;
 
@@ -270,7 +270,7 @@ class CARVE_API CarveTriangulationQuadMerger : public csg::CSG::Hook {
   }
 };
 
-class CARVE_API CarveHoleResolver : public csg::CSG::Hook {
+class CarveHoleResolver : public csg::CSG::Hook {
  public:
   CarveHoleResolver() = default;
 

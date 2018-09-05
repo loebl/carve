@@ -53,9 +53,9 @@ class Polyhedron : public Geometry<3> {
  private:
   friend Polyhedron* carve::polyhedronFromMesh(const mesh::MeshSet<3>*, int);
 
-  Polyhedron() {}
+  CARVE_API Polyhedron() = default;
 
-  Polyhedron& operator=(const Polyhedron&);  // not implemented
+  CARVE_API Polyhedron& operator=(const Polyhedron&) = default;
 
   // *** initialization
 
@@ -73,11 +73,11 @@ class Polyhedron : public Geometry<3> {
   void commonFaceInit(bool _recalc);
 
  public:
-  static void collectFaceVertices(
+   CARVE_API static void collectFaceVertices(
       std::vector<face_t>& faces, std::vector<vertex_t>& vertices,
       std::unordered_map<const vertex_t*, const vertex_t*>& vmap);
 
-  static void collectFaceVertices(std::vector<face_t>& faces,
+   CARVE_API static void collectFaceVertices(std::vector<face_t>& faces,
                                   std::vector<vertex_t>& vertices);
 
   std::vector<bool> manifold_is_closed;
@@ -88,54 +88,54 @@ class Polyhedron : public Geometry<3> {
 
   // *** construction of Polyhedron objects
 
-  Polyhedron(const Polyhedron&);
+  CARVE_API Polyhedron(const Polyhedron&);
 
   // copy a single manifold
-  Polyhedron(const Polyhedron&, int m_id);
+  CARVE_API Polyhedron(const Polyhedron&, int m_id);
 
   // copy a subset of manifolds
-  Polyhedron(const Polyhedron&, const std::vector<bool>& selected_manifolds);
+  CARVE_API Polyhedron(const Polyhedron&, const std::vector<bool>& selected_manifolds);
 
-  Polyhedron(std::vector<face_t>& _faces, std::vector<vertex_t>& _vertices,
+  CARVE_API Polyhedron(std::vector<face_t>& _faces, std::vector<vertex_t>& _vertices,
              bool _recalc = false);
 
-  Polyhedron(std::vector<face_t>& _faces, bool _recalc = false);
+  CARVE_API Polyhedron(std::vector<face_t>& _faces, bool _recalc = false);
 
-  Polyhedron(std::list<face_t>& _faces, bool _recalc = false);
+  CARVE_API Polyhedron(std::list<face_t>& _faces, bool _recalc = false);
 
   CARVE_API Polyhedron(const std::vector<carve::geom3d::Vector>& vertices, int n_faces,
              const std::vector<int>& face_indices);
 
-  ~Polyhedron();
+  CARVE_API ~Polyhedron();
 
   // *** containment queries
 
-  void testVertexAgainstClosedManifolds(const carve::geom3d::Vector& v,
+  CARVE_API void testVertexAgainstClosedManifolds(const carve::geom3d::Vector& v,
                                         std::map<int, PointClass>& result,
                                         bool ignore_orentation) const;
 
-  PointClass containsVertex(const carve::geom3d::Vector& v,
+  CARVE_API PointClass containsVertex(const carve::geom3d::Vector& v,
                             const face_t** hit_face = nullptr,
                             bool even_odd = false, int manifold_id = -1) const;
 
   // *** locality queries
 
-  void findEdgesNear(const carve::geom::aabb<3>& aabb,
+  CARVE_API void findEdgesNear(const carve::geom::aabb<3>& aabb,
                      std::vector<const edge_t*>& edges) const;
-  void findEdgesNear(const carve::geom3d::LineSegment& l,
+  CARVE_API void findEdgesNear(const carve::geom3d::LineSegment& l,
                      std::vector<const edge_t*>& edges) const;
-  void findEdgesNear(const carve::geom3d::Vector& v,
+  CARVE_API void findEdgesNear(const carve::geom3d::Vector& v,
                      std::vector<const edge_t*>& edges) const;
-  void findEdgesNear(const face_t& face,
+  CARVE_API void findEdgesNear(const face_t& face,
                      std::vector<const edge_t*>& edges) const;
-  void findEdgesNear(const edge_t& edge,
+  CARVE_API void findEdgesNear(const edge_t& edge,
                      std::vector<const edge_t*>& edges) const;
 
-  void findFacesNear(const carve::geom::aabb<3>& aabb,
+  CARVE_API void findFacesNear(const carve::geom::aabb<3>& aabb,
                      std::vector<const face_t*>& faces) const;
-  void findFacesNear(const carve::geom3d::LineSegment& l,
+  CARVE_API void findFacesNear(const carve::geom3d::LineSegment& l,
                      std::vector<const face_t*>& faces) const;
-  void findFacesNear(const edge_t& edge,
+  CARVE_API void findFacesNear(const edge_t& edge,
                      std::vector<const face_t*>& faces) const;
 
   // *** manifold queries
@@ -149,29 +149,29 @@ class Polyhedron : public Geometry<3> {
   template <typename T>
   int edgeManifolds(const edge_t* e, T result) const;
 
-  size_t manifoldCount() const;
+  inline size_t manifoldCount() const;
 
-  bool hasOpenManifolds() const;
+  inline bool hasOpenManifolds() const;
 
   // *** transformation
 
   // flip face directions
-  void invertAll();
-  void invert(const std::vector<bool>& selected_manifolds);
+  CARVE_API void invertAll();
+  CARVE_API void invert(const std::vector<bool>& selected_manifolds);
 
-  void invert(int m_id);
-  void invert();
+  inline void invert(int m_id);
+  inline void invert();
 
   // matrix transform of vertices
-  void transform(const carve::math::Matrix& xform);
+  CARVE_API void transform(const carve::math::Matrix& xform);
 
   // arbitrary function transform of vertices
   template <typename T>
   void transform(const T& xform);
 
-  void print(std::ostream&) const;
+  CARVE_API void print(std::ostream&) const;
 
-  void canonicalize();
+  CARVE_API void canonicalize();
 };
 
 std::ostream& operator<<(std::ostream&, const Polyhedron&);

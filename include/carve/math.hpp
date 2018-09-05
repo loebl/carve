@@ -38,11 +38,11 @@ struct vector;
 namespace carve {
 namespace math {
 struct Matrix3;
-void eigSolveSymmetric(const Matrix3& m, double& l1, carve::geom::vector<3>& e1,
+void CARVE_API eigSolveSymmetric(const Matrix3& m, double& l1, carve::geom::vector<3>& e1,
                        double& l2, carve::geom::vector<3>& e2, double& l3,
                        carve::geom::vector<3>& e3);
 
-void eigSolve(const Matrix3& m, double& l1, double& l2, double& l3);
+void CARVE_API eigSolve(const Matrix3& m, double& l1, double& l2, double& l3);
 
 static inline bool ZERO(double x) {
   return fabs(x) < carve::EPSILON;
