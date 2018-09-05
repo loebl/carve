@@ -65,7 +65,7 @@ static std::vector<vert_t> incorporateHolesIntoPolygon(
     const project_t& project, const std::vector<vert_t>& f_loop,
     const std::vector<std::vector<vert_t> >& h_loops);
 
-void incorporateHolesIntoPolygon(
+void CARVE_API incorporateHolesIntoPolygon(
     const std::vector<std::vector<carve::geom2d::P2> >& poly,
     std::vector<std::pair<size_t, size_t> >& result, size_t poly_loop,
     const std::vector<size_t>& hole_loops);
@@ -86,13 +86,13 @@ void incorporateHolesIntoPolygon(
  * @return A vector of pairs of <loop_number, index> that
  *         reference poly and define the result polygon loop.
  */
-std::vector<std::pair<size_t, size_t> > incorporateHolesIntoPolygon(
+std::vector<std::pair<size_t, size_t> > CARVE_API incorporateHolesIntoPolygon(
     const std::vector<std::vector<carve::geom2d::P2> >& poly);
 
-std::vector<std::vector<std::pair<size_t, size_t> > > mergePolygonsAndHoles(
+std::vector<std::vector<std::pair<size_t, size_t> > > CARVE_API mergePolygonsAndHoles(
     const std::vector<std::vector<carve::geom2d::P2> >& poly);
 
-struct tri_idx {
+struct CARVE_API tri_idx {
   union {
     unsigned v[3];
     struct {

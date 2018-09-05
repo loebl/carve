@@ -295,7 +295,7 @@ inline bool quadIsConvex(const T& a, const T& b, const T& c, const T& d,
   return quadIsConvex(adapt(a), adapt(b), adapt(c), adapt(d));
 }
 
-double signedArea(const std::vector<P2>& points);
+double CARVE_API signedArea(const std::vector<P2>& points);
 
 static inline double signedArea(const P2& a, const P2& b, const P2& c) {
   return ((b.y + a.y) * (b.x - a.x) + (c.y + b.y) * (c.x - b.x) +

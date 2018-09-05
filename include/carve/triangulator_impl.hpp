@@ -267,7 +267,7 @@ static inline vert_edge_t ordered_vert_edge_t(unsigned a, unsigned b) {
   return (a < b) ? vert_edge_t(a, b) : vert_edge_t(b, a);
 }
 
-struct tri_pair_t {
+struct CARVE_API tri_pair_t {
   carve::triangulate::tri_idx *a, *b;
   double score;
   size_t idx;
@@ -388,7 +388,7 @@ struct max_score {
   }
 };
 
-struct tri_pairs_t {
+struct CARVE_API tri_pairs_t {
   typedef std::unordered_map<vert_edge_t, tri_pair_t*, hash_vert_edge_t>
       storage_t;
   storage_t storage;

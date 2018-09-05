@@ -116,6 +116,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <carve/shewchuk_predicates.hpp>
 //#include <sys/time.h>
 
 #if defined(_MSC_VER)

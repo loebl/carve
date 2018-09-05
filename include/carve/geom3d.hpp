@@ -111,14 +111,14 @@ bool fitPlane(iter_t begin, iter_t end, adapt_t adapt, Plane& plane) {
 
 bool planeIntersection(const Plane& a, const Plane& b, Ray& r);
 
-IntersectionClass rayPlaneIntersection(const Plane& p, const Vector& v1,
+IntersectionClass CARVE_API rayPlaneIntersection(const Plane& p, const Vector& v1,
                                        const Vector& v2, Vector& v, double& t);
 
-IntersectionClass lineSegmentPlaneIntersection(const Plane& p,
+IntersectionClass CARVE_API lineSegmentPlaneIntersection(const Plane& p,
                                                const LineSegment& line,
                                                Vector& v);
 
-RayIntersectionClass rayRayIntersection(const Ray& r1, const Ray& r2,
+RayIntersectionClass CARVE_API rayRayIntersection(const Ray& r1, const Ray& r2,
                                         Vector& v1, Vector& v2, double& mu1,
                                         double& mu2);
 
