@@ -338,7 +338,7 @@ template <unsigned ndim>
 struct plane {
   typedef vector<ndim> vector_t;
 
-  vector_t N;
+  vector_t N; ///<@brief normal of this plane
   double d;
 
   void negate();

@@ -30,7 +30,7 @@
 
 #include <carve/polyline_decl.hpp>
 
-#if defined(_WIN32) && defined(_MSC_VER)
+#if defined(_WIN32) && (defined(_MSC_VER) || defined(__clang__))
 #include <basetsd.h>
 typedef SSIZE_T ssize_t;
 #endif
