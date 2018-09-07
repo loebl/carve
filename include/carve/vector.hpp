@@ -363,30 +363,6 @@ static inline vector<ndim> closestPoint(const plane<ndim>& p,
 
 // ========================================================================
 template <unsigned ndim>
-struct sphere {
-  typedef vector<ndim> vector_t;
-
-  vector_t C;
-  double r;
-
-  aabb<ndim> getAABB() const;
-
-  sphere();
-  sphere(const vector_t& _C, double _r);
-};
-
-template <unsigned ndim, typename val_t>
-double distance(const sphere<ndim>& sphere, const val_t& point);
-
-template <unsigned ndim, typename val_t>
-double distance2(const sphere<ndim>& sphere, const val_t& point);
-
-template <unsigned ndim>
-static inline vector<ndim> closestPoint(const sphere<ndim>& sphere,
-                                        const vector<ndim>& point);
-
-// ========================================================================
-template <unsigned ndim>
 struct tri {
   typedef vector<ndim> vector_t;
 
@@ -407,9 +383,6 @@ template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const vector<ndim>& v);
 template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const carve::geom::plane<ndim>& p);
-template <unsigned ndim>
-std::ostream& operator<<(std::ostream& o,
-                         const carve::geom::sphere<ndim>& sphere);
 template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const carve::geom::tri<ndim>& tri);
 

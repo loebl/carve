@@ -716,37 +716,6 @@ vector<ndim> closestPoint(const plane<ndim>& p, const vector<ndim>& v) {
 }
 
 template <unsigned ndim>
-aabb<ndim> sphere<ndim>::getAABB() const {
-  aabb<ndim> r;
-  r.fit(C - r, C + r);
-}
-
-template <unsigned ndim>
-sphere<ndim>::sphere() {
-  C.setZero();
-  r = 1.0;
-}
-
-template <unsigned ndim>
-sphere<ndim>::sphere(const vector_t& _C, double _r) : C(_C), r(_r) {}
-
-template <unsigned ndim, typename val_t>
-double distance(const sphere<ndim>& sphere, const val_t& point) {
-  return std::max(0.0, distance(sphere.C, point) - sphere.r);
-}
-
-template <unsigned ndim, typename val_t>
-double distance2(const sphere<ndim>& sphere, const val_t& point) {
-  return std::max(0.0, distance2(sphere.C, point) - sphere.r * sphere.r);
-}
-
-template <unsigned ndim>
-vector<ndim> closestPoint(const sphere<ndim>& sphere,
-                          const vector<ndim>& point) {
-  return (point - sphere.C).normalized() * sphere.r;
-}
-
-template <unsigned ndim>
 aabb<ndim> tri<ndim>::getAABB() const {
   aabb<ndim> aabb;
   aabb.fit(v[0], v[1], v[2]);
@@ -774,13 +743,6 @@ std::ostream& operator<<(std::ostream& o, const vector<ndim>& v) {
 template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const carve::geom::plane<ndim>& p) {
   o << p.N << ";" << p.d;
-  return o;
-}
-
-template <unsigned ndim>
-std::ostream& operator<<(std::ostream& o,
-                         const carve::geom::sphere<ndim>& sphere) {
-  o << "{sphere " << sphere.C << ";" << sphere.r << "}";
   return o;
 }
 

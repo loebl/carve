@@ -25,8 +25,8 @@
 #pragma once
 
 #include <carve/carve.hpp>
-
 #include <carve/vector.hpp>
+#include <carve/sphere.hpp>
 
 #include <vector>
 
