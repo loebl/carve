@@ -26,12 +26,13 @@
 
 #include <carve/carve.hpp>
 #include <carve/vector.hpp>
-#include <carve/sphere.hpp>
 
 #include <vector>
 
 namespace carve {
 namespace geom {
+
+template<unsigned ndim> struct sphere;
 
 // n-dimensional AABB
 template <unsigned ndim>

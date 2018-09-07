@@ -3,9 +3,12 @@
 // This file is part of the Carve CSG Library (http://carve-csg.com/)
 // For licensing terms see LICENSE
 
+#pragma once
+
 #include <ostream>
 #include <algorithm>
 #include <carve/vector.hpp>
+#include <carve/aabb.hpp>
 
 namespace carve {
 namespace geom {
@@ -18,9 +21,9 @@ struct sphere {
   sphere() { C.setZero(); }
 
   aabb<ndim> getAABB() const {
-    aabb<ndim> r;
-    r.fit(C - r, C + r);
-    return r;
+    aabb<ndim> box;
+    box.fit(C - r, C + r);
+    return box;
   }
 };
 
@@ -47,6 +50,9 @@ inline std::ostream& operator<<(std::ostream& o,
   return o;
 }
 
+//forward declarations of instantiations in lib
+extern template struct sphere<2>;
+extern template struct sphere<3>;
 
 }
 }
