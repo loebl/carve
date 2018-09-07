@@ -243,7 +243,7 @@ class Edge : public tagable {
 // A Face contains a pointer to the beginning of the half-edge
 // circular list that defines its boundary.
 template <unsigned ndim>
-class CARVE_API Face : public tagable {
+class Face : public tagable {
  public:
   typedef Vertex<ndim> vertex_t;
   typedef Edge<ndim> edge_t;
@@ -320,8 +320,8 @@ class CARVE_API Face : public tagable {
         project(other.project),
         unproject(other.unproject) {}
 
-  project_t getProjector(bool positive_facing, int axis) const;
-  unproject_t getUnprojector(bool positive_facing, int axis) const;
+  project_t CARVE_API getProjector(bool positive_facing, int axis) const;
+  unproject_t CARVE_API getUnprojector(bool positive_facing, int axis) const;
 
  public:
   typedef detail::list_iter_t<Edge<ndim> > edge_iter_t;
@@ -333,11 +333,11 @@ class CARVE_API Face : public tagable {
   const_edge_iter_t begin() const { return const_edge_iter_t(edge, 0); }
   const_edge_iter_t end() const { return const_edge_iter_t(edge, n_edges); }
 
-  bool containsPoint(const vector_t& p) const;
-  bool containsPointInProjection(const vector_t& p) const;
-  bool simpleLineSegmentIntersection(const carve::geom::linesegment<ndim>& line,
+  bool CARVE_API containsPoint(const vector_t& p) const;
+  bool CARVE_API containsPointInProjection(const vector_t& p) const;
+  bool CARVE_API simpleLineSegmentIntersection(const carve::geom::linesegment<ndim>& line,
                                      vector_t& intersection) const;
-  IntersectionClass lineSegmentIntersection(
+  IntersectionClass CARVE_API lineSegmentIntersection(
       const carve::geom::linesegment<ndim>& line, vector_t& intersection) const;
 
   aabb_t getAABB() const;
@@ -389,7 +389,7 @@ class CARVE_API Face : public tagable {
 
   vector_t centroid() const;
 
-  static Face* closeLoop(edge_t* open_edge);
+  static CARVE_API Face* closeLoop(edge_t* open_edge);
 
   Face(edge_t* e) : edge(e), n_edges(0), mesh(nullptr) {
     do {
