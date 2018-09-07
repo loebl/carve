@@ -28,7 +28,7 @@
 
 #include <carve/aabb.hpp>
 #include <carve/matrix.hpp>
-#include <carve/vector.hpp>
+#include <carve/vector_utility.hpp>
 
 #include <limits>
 

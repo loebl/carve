@@ -26,7 +26,7 @@
 #include <carve_config.h>
 #endif
 
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/pointset.hpp>
 
 namespace carve {

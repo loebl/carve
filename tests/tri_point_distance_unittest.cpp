@@ -29,6 +29,6 @@
 #endif
 
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 
 TEST(TriPtDistTest, TriPtDistTest1) {}

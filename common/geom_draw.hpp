@@ -27,7 +27,7 @@
 #include <carve/carve.hpp>
 
 #include <carve/mesh.hpp>
-#include <carve/vector.hpp>
+#include <carve/vector_utility.hpp>
 
 #include <carve/octree_decl.hpp>
 #include <carve/octree_impl.hpp>

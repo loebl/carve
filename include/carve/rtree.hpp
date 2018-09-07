@@ -27,7 +27,7 @@
 #include <carve/carve.hpp>
 
 #include <carve/aabb.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 
 #include <iostream>
 

@@ -29,7 +29,7 @@
 #endif
 
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/triangulator.hpp>
 
 TEST(Triangulate, Test2) {

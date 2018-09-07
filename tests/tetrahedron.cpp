@@ -26,7 +26,7 @@
 #include <carve_config.h>
 #endif
 
-#include <carve/vector.hpp>
+#include <carve/vector_utility.hpp>
 #include <iostream>
 
 double triangularPrismVolume(const carve::geom3d::Vector& a,

@@ -29,7 +29,7 @@
 #endif
 
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/geom2d.hpp>
 #include <carve/geom3d.hpp>
 #include <carve/matrix.hpp>

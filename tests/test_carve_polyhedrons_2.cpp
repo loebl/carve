@@ -23,7 +23,7 @@
 // SOFTWARE.
 
 #include <carve/csg.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/poly.hpp>
 
 #include <iostream>

@@ -31,7 +31,7 @@
 #endif
 
 #include <carve/djset.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/poly.hpp>
 #include <carve/octree_impl.hpp>
 #include <carve/timing.hpp>

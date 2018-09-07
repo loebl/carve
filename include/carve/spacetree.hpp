@@ -29,7 +29,7 @@
 #include <carve/aabb.hpp>
 #include <carve/edge_decl.hpp>
 #include <carve/face_decl.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/vertex_decl.hpp>
 
 namespace carve {

@@ -26,7 +26,7 @@
 
 #include <carve/aabb.hpp>
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 
 #include <limits>
 #include <list>

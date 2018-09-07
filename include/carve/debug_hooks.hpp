@@ -28,7 +28,7 @@
 
 #include <carve/csg.hpp>
 #include <carve/geom3d.hpp>
-#include <carve/vector.hpp>
+#include <carve/vector_utility.hpp>
 
 #include <iomanip>
 

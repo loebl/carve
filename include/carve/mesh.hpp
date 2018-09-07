@@ -28,7 +28,7 @@
 
 #include <carve/aabb.hpp>
 #include <carve/djset.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/geom3d.hpp>
 #include <carve/rtree.hpp>
 #include <carve/tag.hpp>

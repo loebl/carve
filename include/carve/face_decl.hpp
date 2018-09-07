@@ -31,7 +31,7 @@
 #include <carve/geom3d.hpp>
 #include <carve/matrix.hpp>
 #include <carve/tag.hpp>
-#include <carve/vector.hpp>
+#include <carve/vector_utility.hpp>
 
 #include <list>
 #include <map>

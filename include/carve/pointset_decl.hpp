@@ -31,7 +31,7 @@
 
 #include <carve/aabb.hpp>
 #include <carve/carve.hpp>
-#include <carve/geom.hpp>
+#include <carve/vector.hpp>
 #include <carve/geom3d.hpp>
 #include <carve/kd_node.hpp>
 #include <carve/tag.hpp>

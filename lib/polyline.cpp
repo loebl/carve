@@ -26,9 +26,9 @@
 #include <carve_config.h>
 #endif
 
-#include <carve/geom.hpp>
-#include <carve/polyline.hpp>
 #include <carve/vector.hpp>
+#include <carve/polyline.hpp>
+#include <carve/vector_utility.hpp>
 
 namespace carve {
 namespace line {
