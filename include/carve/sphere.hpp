@@ -50,9 +50,5 @@ inline std::ostream& operator<<(std::ostream& o,
   return o;
 }
 
-//forward declarations of instantiations in lib
-extern template struct sphere<2>;
-extern template struct sphere<3>;
-
 }
 }

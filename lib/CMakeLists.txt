@@ -8,6 +8,8 @@ if(MSVC AND NOT BUILD_SHARED_LIBS)
     string(REPLACE "/Zi" "/Z7" CMAKE_CXX_FLAGS_RELWITHDEBINFO  ${CMAKE_CXX_FLAGS_RELWITHDEBINFO})
 ENDIF()
 
+add_definitions(-DCOMPILING_LIBRARY)
+
 add_library(carve
             carve.cpp
             convex_hull.cpp
@@ -36,8 +38,7 @@ add_library(carve
             timing.cpp
             triangulator.cpp
             triangle_intersection.cpp
-            shewchuk_predicates.cpp
-            sphere.cpp)
+            shewchuk_predicates.cpp)
 
 set_target_properties(carve PROPERTIES
                       VERSION   "${carve_VERSION_MAJOR}.${carve_VERSION_MINOR}.${carve_VERSION_PATCH}"

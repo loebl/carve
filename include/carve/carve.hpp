@@ -36,6 +36,12 @@
 #include <carve/win32.h>
 #endif
 
+#ifdef COMPILING_LIBRARY
+#define EXP_TEMPLATE
+#else
+#define EXP_TEMPLATE extern
+#endif
+
 #include <sstream>
 #include <string>
 #include <functional>
