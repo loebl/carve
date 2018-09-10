@@ -36,40 +36,46 @@ struct aabb;
 template <unsigned ndim>
 struct base {
   double v[ndim];
+  double& operator[](unsigned i) { return v[i]; }
+  const double& operator[](unsigned i) const { return v[i]; }
 };
 
 template <>
-struct CARVE_API base<2> {
+struct base<2> {
   union {
     double v[2];
     struct {
       double x, y;
     };
   };
+  double& operator[](unsigned i) { return v[i]; }
+  const double& operator[](unsigned i) const { return v[i]; }
 };
 template <>
-struct CARVE_API base<3> {
+struct base<3> {
   union {
     double v[3];
     struct {
       double x, y, z;
     };
   };
+  double& operator[](unsigned i) { return v[i]; }
+  const double& operator[](unsigned i) const { return v[i]; }
 };
 template <>
-struct CARVE_API base<4> {
+struct base<4> {
   union {
     double v[4];
     struct {
       double x, y, z, w;
     };
   };
+  double& operator[](unsigned i) { return v[i]; }
+  const double& operator[](unsigned i) const { return v[i]; }
 };
 
 template <unsigned ndim>
 struct vector : public base<ndim> {
-  enum { __ndim = ndim };
-
   static vector ZERO();
   double length2() const;
   double length() const;
@@ -85,8 +91,6 @@ struct vector : public base<ndim> {
   vector<ndim> invscaled(double d) const;
   vector<ndim>& negate();
   vector<ndim> negated() const;
-  double& operator[](unsigned i);
-  const double& operator[](unsigned i) const;
   template <typename assign_t>
   vector<ndim>& operator=(const assign_t& t);
   std::string asStr() const;

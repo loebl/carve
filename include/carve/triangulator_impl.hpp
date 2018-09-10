@@ -37,8 +37,8 @@ namespace detail {
 
 static inline bool axisOrdering(const carve::geom2d::P2& a,
                                 const carve::geom2d::P2& b, int axis) {
-  return a.v[axis] < b.v[axis] ||
-         (a.v[axis] == b.v[axis] && a.v[1 - axis] < b.v[1 - axis]);
+  return a[axis] < b[axis] ||
+         (a[axis] == b[axis] && a[1 - axis] < b[1 - axis]);
 }
 
 /**

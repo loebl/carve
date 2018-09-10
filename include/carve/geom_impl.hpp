@@ -74,7 +74,7 @@ bool vector<ndim>::isZero(double epsilon) const {
 template <unsigned ndim>
 void vector<ndim>::setZero() {
   for (size_t i = 0; i < ndim; ++i) {
-    this->v[i] = 0.0;
+    (*this)[i] = 0.0;
   }
 }
 
@@ -119,15 +119,6 @@ vector<ndim>& vector<ndim>::negate() {
 template <unsigned ndim>
 vector<ndim> vector<ndim>::negated() const {
   return -*this;
-}
-
-template <unsigned ndim>
-double& vector<ndim>::operator[](unsigned i) {
-  return this->v[i];
-}
-template <unsigned ndim>
-const double& vector<ndim>::operator[](unsigned i) const {
-  return this->v[i];
 }
 
 template <unsigned ndim>
