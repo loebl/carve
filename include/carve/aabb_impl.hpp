@@ -30,6 +30,7 @@
 #include <carve/vector_utility.hpp>
 #include <carve/util.hpp>
 #include <carve/sphere.hpp>
+#include <carve/triangle.hpp>
 
 namespace carve {
 namespace geom {

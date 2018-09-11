@@ -716,25 +716,6 @@ vector<ndim> closestPoint(const plane<ndim>& p, const vector<ndim>& v) {
 }
 
 template <unsigned ndim>
-aabb<ndim> tri<ndim>::getAABB() const {
-  aabb<ndim> aabb;
-  aabb.fit(v[0], v[1], v[2]);
-  return aabb;
-}
-
-template <unsigned ndim>
-tri<ndim>::tri(vector_t _v[3]) {
-  std::copy(v, v + 3, _v);
-}
-
-template <unsigned ndim>
-tri<ndim>::tri(const vector_t& a, const vector_t& b, const vector_t& c) {
-  v[0] = a;
-  v[1] = b;
-  v[2] = c;
-}
-
-template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const vector<ndim>& v) {
   o << v.asStr();
   return o;
@@ -744,22 +725,6 @@ template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const carve::geom::plane<ndim>& p) {
   o << p.N << ";" << p.d;
   return o;
-}
-
-template <unsigned ndim>
-std::ostream& operator<<(std::ostream& o, const carve::geom::tri<ndim>& tri) {
-  o << "{tri " << tri.v[0] << ";" << tri.v[1] << ";" << tri.v[2] << "}";
-  return o;
-}
-
-template <unsigned ndim>
-double distance(const tri<ndim>& tri, const vector<ndim>& pt) {
-  return distance(closestPoint(tri, pt), pt);
-}
-
-template <unsigned ndim>
-double distance2(const tri<ndim>& tri, const vector<ndim>& pt) {
-  return distance2(closestPoint(tri, pt), pt);
 }
 }  // namespace geom
 }  // namespace carve

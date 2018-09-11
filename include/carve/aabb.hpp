@@ -33,6 +33,7 @@ namespace carve {
 namespace geom {
 
 template<unsigned ndim> struct sphere;
+template<unsigned ndim> struct tri;
 
 // n-dimensional AABB
 template <unsigned ndim>

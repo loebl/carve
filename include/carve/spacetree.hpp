@@ -39,8 +39,8 @@ namespace space {
 static inline bool intersection_test(const carve::geom::aabb<3>& aabb,
                                      const carve::poly::Face<3>* face) {
   if (face->nVertices() == 3) {
-    return aabb.intersects(carve::geom::tri<3>(
-        face->vertex(0)->v, face->vertex(1)->v, face->vertex(2)->v));
+    return aabb.intersects(carve::geom::tri<3>{
+      face->vertex(0)->v, face->vertex(1)->v, face->vertex(2)->v});
   } else {
     // partial, conservative SAT.
     return aabb.intersects(face->aabb) && aabb.intersects(face->plane_eqn);
