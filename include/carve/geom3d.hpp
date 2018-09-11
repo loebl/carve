@@ -98,9 +98,9 @@ bool fitPlane(iter_t begin, iter_t end, adapt_t adapt, Plane& plane) {
 
 #if defined(CARVE_DEBUG)
   if (p.size() > 3) {
-    std::cerr << "N-gon with " << p.size() << " vertices: fitted distance:";
+    std::cerr << "N-gon with " << p.size() << " vertices: fitted distance:\n";
     for (size_t i = 0; i < p.size(); ++i) {
-      std::cerr << " {" << p[i] << "} " << distance(plane, p[i]);
+      std::cerr << " {" << p[i] << "} " << distance(plane, p[i]) << "\n";
     }
     std::cerr << std::endl;
   }
