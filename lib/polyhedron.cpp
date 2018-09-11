@@ -981,10 +981,10 @@ PointClass Polyhedron::containsVertex(const carve::geom3d::Vector& v,
   }
 }
 
-void Polyhedron::findEdgesNear(const carve::geom::aabb<3>& aabb,
+void Polyhedron::findEdgesNear(const carve::geom::aabb<3>& paabb,
                                std::vector<const edge_t*>& outEdges) const {
   outEdges.clear();
-  octree.findEdgesNear(aabb, outEdges);
+  octree.findEdgesNear(paabb, outEdges);
 }
 
 void Polyhedron::findEdgesNear(const carve::geom3d::LineSegment& line,
@@ -1000,9 +1000,9 @@ void Polyhedron::findEdgesNear(const carve::geom3d::Vector& v,
 }
 
 void Polyhedron::findEdgesNear(const face_t& face,
-                               std::vector<const edge_t*>& edges) const {
-  edges.clear();
-  octree.findEdgesNear(face, edges);
+                               std::vector<const edge_t*>& pedges) const {
+  pedges.clear();
+  octree.findEdgesNear(face, pedges);
 }
 
 void Polyhedron::findEdgesNear(const edge_t& edge,
@@ -1017,10 +1017,10 @@ void Polyhedron::findFacesNear(const carve::geom3d::LineSegment& line,
   octree.findFacesNear(line, outFaces);
 }
 
-void Polyhedron::findFacesNear(const carve::geom::aabb<3>& aabb,
+void Polyhedron::findFacesNear(const carve::geom::aabb<3>& paabb,
                                std::vector<const face_t*>& outFaces) const {
   outFaces.clear();
-  octree.findFacesNear(aabb, outFaces);
+  octree.findFacesNear(paabb, outFaces);
 }
 
 void Polyhedron::findFacesNear(const edge_t& edge,
@@ -1051,10 +1051,10 @@ void Polyhedron::print(std::ostream& o) const {
     o << "  E@" << &(*i) << " {" << std::endl;
     o << "    V@" << (*i).v1 << " - "
       << "V@" << (*i).v2 << std::endl;
-    const std::vector<const face_t*>& faces =
+    const std::vector<const face_t*>& tfaces =
         connectivity.edge_to_face[edgeToIndex_fast(&(*i))];
-    for (size_t j = 0; j < (faces.size() & ~1U); j += 2) {
-      o << "      fp: F@" << faces[j] << ", F@" << faces[j + 1] << std::endl;
+    for (size_t j = 0; j < (tfaces.size() & ~1U); j += 2) {
+      o << "      fp: F@" << tfaces[j] << ", F@" << tfaces[j + 1] << std::endl;
     }
     o << "  }" << std::endl;
   }

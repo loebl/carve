@@ -321,15 +321,15 @@ double signedArea(const std::vector<T>& points, adapt_t adapt) {
 template <typename iter_t, typename adapt_t>
 double signedArea(iter_t begin, iter_t end, adapt_t adapt) {
   double A = 0.0;
-  P2 p, n;
+  P2 n;
 
   if (begin == end) {
     return 0.0;
   }
 
-  p = adapt(*begin);
+  P2 p = adapt(*begin);
   for (iter_t c = begin; ++c != end;) {
-    P2 n = adapt(*c);
+    n = adapt(*c);
     A += (n.y + p.y) * (n.x - p.x);
     p = n;
   }

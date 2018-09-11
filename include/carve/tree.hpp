@@ -155,7 +155,6 @@ class CSG_SelectNode : public CSG_TreeNode {
     if (!c_temp) {
       c = c->clone();
     }
-    size_t i = 0;
     size_t j = 0;
     for (size_t i = 0; i < c->meshes.size(); ++i) {
       if (i >= selected_meshes.size() || !selected_meshes[i]) {

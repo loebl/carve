@@ -1144,12 +1144,12 @@ void carve::csg::CSG::makeFaceEdges(carve::csg::EdgeClassification& eclass,
       std::cerr << "face pair: " << face_a << ":" << face_b << " N(verts) "
                 << vertices.size() << std::endl;
       for (std::vector<meshset_t::vertex_t *>::const_iterator
-               i = vertices.begin(),
+               ivertices = vertices.begin(),
                e = vertices.end();
-           i != e; ++i) {
-        std::cerr << (*i) << " " << (*i)->v << " ("
-                  << carve::geom::distance(face_a->plane, (*i)->v) << ","
-                  << carve::geom::distance(face_b->plane, (*i)->v) << ")"
+           ivertices != e; ++ivertices) {
+        std::cerr << (*ivertices) << " " << (*ivertices)->v << " ("
+                  << carve::geom::distance(face_a->plane, (*ivertices)->v) << ","
+                  << carve::geom::distance(face_b->plane, (*ivertices)->v) << ")"
                   << std::endl;
         // CARVE_ASSERT(carve::geom3d::distance(face_a->plane_eqn, *(*i)) <
         // EPSILON);

@@ -562,9 +562,9 @@ int orient3d_inexact(const vec3& a, const vec3& b, const vec3& c,
   double det = ad.z * (bdxcdy - cdxbdy) + bd.z * (cdxady - adxcdy) +
                cd.z * (adxbdy - bdxady);
 
-  double permanent = (fabs(bdxcdy) + fabs(cdxbdy)) * fabs(ad.z) +
-                     (fabs(cdxady) + fabs(adxcdy)) * fabs(bd.z) +
-                     (fabs(adxbdy) + fabs(bdxady)) * fabs(cd.z);
+  //double permanent = (fabs(bdxcdy) + fabs(cdxbdy)) * fabs(ad.z) +
+  //                   (fabs(cdxady) + fabs(adxcdy)) * fabs(bd.z) +
+  //                   (fabs(adxbdy) + fabs(bdxady)) * fabs(cd.z);
 
   double errbound = 0.0;  // shewchuk::robust.o3derrboundA * permanent;
 
@@ -679,7 +679,7 @@ int main(int argc, char** argv) {
     readOBJ(options.file, inputs);
   }
 
-  carve::mesh::MeshSet<3>* poly;
+  carve::mesh::MeshSet<3>* poly = nullptr;
   for (std::list<carve::input::Data*>::const_iterator i = inputs.input.begin();
        i != inputs.input.end(); ++i) {
     poly = inputs.create<carve::mesh::MeshSet<3> >(*i);

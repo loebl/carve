@@ -290,8 +290,8 @@ struct Graph {
  */
 static void splitFace(
     carve::mesh::MeshSet<3>::face_t* face, const carve::csg::V2Set& edges,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& face_loops,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& hole_loops,
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& face_loops,
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& hole_loops,
     const carve::csg::VertexIntersections& /* vi */) {
   Graph graph;
 
@@ -632,8 +632,8 @@ static void computeContainment(
  */
 static void mergeFacesAndHoles(
     carve::mesh::MeshSet<3>::face_t* face,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& f_loops,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& h_loops,
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& f_loops,
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& h_loops,
     carve::csg::CSG::Hooks& /* hooks */) {
   std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > face_loops;
   std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > hole_loops;
@@ -647,29 +647,9 @@ static void mergeFacesAndHoles(
                     h_loops.end(), "/tmp/pre_merge.ply");
 #endif
 
-  {
-    // move input face and hole loops to temp vectors.
-    size_t m;
-    face_loops.resize(f_loops.size());
-    m = 0;
-    for (std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t *> >::iterator
-             i = f_loops.begin(),
-             ie = f_loops.end();
-         i != ie; ++i, ++m) {
-      face_loops[m].swap((*i));
-    }
-
-    hole_loops.resize(h_loops.size());
-    m = 0;
-    for (std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t *> >::iterator
-             i = h_loops.begin(),
-             ie = h_loops.end();
-         i != ie; ++i, ++m) {
-      hole_loops[m].swap((*i));
-    }
-    f_loops.clear();
-    h_loops.clear();
-  }
+  // move input face and hole loops to temp vectors.
+  std::swap(f_loops, face_loops);
+  std::swap(h_loops, hole_loops);
 
   // work out the embedding of holes and faces.
   computeContainment(face, face_loops, hole_loops, containing_faces,
@@ -896,7 +876,7 @@ bool processCrossingEdges(
     carve::csg::CSG::Hooks& hooks,
     std::vector<carve::mesh::MeshSet<3>::vertex_t*>& base_loop,
     std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& paths,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >&
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >&
         face_loops_out) {
   const size_t N = base_loop.size();
   std::vector<crossing_data> endpoint_indices;
@@ -1201,7 +1181,8 @@ bool processCrossingEdges(
 
   if (!noncross.size()) {
     // If there are no non-crossing paths then we're done.
-    populateListFromVector(divided_base_loop, face_loops_out);
+    //populateListFromVector(divided_base_loop, face_loops_out);
+    std::swap(divided_base_loop, face_loops_out);
     return true;
   }
 
@@ -1284,8 +1265,8 @@ bool processCrossingEdges(
         }
       }
 
-      std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > face_loops;
-      std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > hole_loops;
+      std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > face_loops;
+      std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > hole_loops;
 
       splitFace(face, face_edges, face_loops, hole_loops, vertex_intersections);
 
@@ -1422,7 +1403,7 @@ void composeEdgesIntoPaths(
     carve::mesh::MeshSet<3>::vertex_t* v = (*p).first;
     CARVE_ASSERT((*p).second.size() == 2);
 
-    std::vector<carve::mesh::MeshSet<3>::vertex_t*> path;
+    //std::vector<carve::mesh::MeshSet<3>::vertex_t*> path;
     path.clear();
     path.push_back(v);
 
@@ -1527,11 +1508,11 @@ void generateOneFaceLoop(
     carve::mesh::MeshSet<3>::face_t* face, const carve::csg::detail::Data& data,
     const carve::csg::VertexIntersections& vertex_intersections,
     carve::csg::CSG::Hooks& hooks,
-    std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& face_loops) {
+    std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >& face_loops) {
   using namespace carve::csg;
 
   std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-  std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > hole_loops;
+  std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > hole_loops;
 
   bool face_edge_intersected = assembleBaseLoop(face, data, base_loop, hooks);
 
@@ -1745,8 +1726,7 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
   static carve::TimingName FUNC_NAME("CSG::generateFaceLoops()");
   carve::TimingBlock block(FUNC_NAME);
   size_t generated_edges = 0;
-  std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-  std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > face_loops;
+  std::vector<std::vector<carve::mesh::MeshSet<3>::vertex_t*> > face_loops;
 
   for (carve::mesh::MeshSet<3>::face_iter i = poly->faceBegin();
        i != poly->faceEnd(); ++i) {
@@ -1756,14 +1736,14 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
     double in_area = 0.0, out_area = 0.0;
 
     {
-      std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-      assembleBaseLoop(face, data, base_loop, hooks);
+      std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop_debug;
+      assembleBaseLoop(face, data, base_loop_debug, hooks);
 
       {
         std::vector<carve::geom2d::P2> projected;
-        projected.reserve(base_loop.size());
-        for (size_t n = 0; n < base_loop.size(); ++n) {
-          projected.push_back(face->project(base_loop[n]->v));
+        projected.reserve(base_loop_debug.size());
+        for (size_t n = 0; n < base_loop_debug.size(); ++n) {
+          projected.push_back(face->project(base_loop_debug[n]->v));
         }
 
         in_area = carve::geom2d::signedArea(projected);
@@ -1778,16 +1758,15 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
     {
       V2Set face_edges;
 
-      std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-      assembleBaseLoop(face, data, base_loop, hooks);
+      std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop_debug;
+      assembleBaseLoop(face, data, base_loop_debug, hooks);
 
-      for (size_t j = 0, je = base_loop.size() - 1; j < je; ++j) {
-        face_edges.insert(std::make_pair(base_loop[j + 1], base_loop[j]));
+      for (size_t j = 0, je = base_loop_debug.size() - 1; j < je; ++j) {
+        face_edges.insert(std::make_pair(base_loop_debug[j + 1], base_loop_debug[j]));
       }
-      face_edges.insert(std::make_pair(base_loop[0], base_loop.back()));
-      for (std::list<std::vector<carve::mesh::MeshSet<3>::vertex_t*> >::
-               const_iterator fli = face_loops.begin();
-           fli != face_loops.end(); ++fli) {
+      face_edges.insert(std::make_pair(base_loop_debug[0], base_loop_debug.back()));
+      for (auto fli = face_loops.cbegin();
+           fli != face_loops.cend(); ++fli) {
         {
           std::vector<carve::geom2d::P2> projected;
           projected.reserve((*fli).size());
@@ -1798,11 +1777,7 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
           double area = carve::geom2d::signedArea(projected);
           std::cerr
               << "### loop_area["
-              << std::distance(
-                     (std::list<std::vector<
-                          carve::mesh::MeshSet<3>::vertex_t*> >::const_iterator)
-                         face_loops.begin(),
-                     fli)
+              << std::distance(face_loops.cbegin(), fli)
               << "]=" << area << std::endl;
           out_area += area;
         }
@@ -1834,10 +1809,8 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
 #if defined(CARVE_DEBUG)
     std::cerr << "### ======" << std::endl;
 #endif
-    for (std::list<
-             std::vector<carve::mesh::MeshSet<3>::vertex_t *> >::const_iterator
-             f = face_loops.begin(),
-             fe = face_loops.end();
+    for (auto f = face_loops.cbegin(),
+             fe = face_loops.cend();
          f != fe; ++f) {
 #if defined(CARVE_DEBUG)
       std::cerr << "### loop:";
