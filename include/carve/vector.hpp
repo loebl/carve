@@ -367,36 +367,9 @@ static inline vector<ndim> closestPoint(const plane<ndim>& p,
 
 // ========================================================================
 template <unsigned ndim>
-struct tri {
-  typedef vector<ndim> vector_t;
-
-  vector_t v[3];
-
-  aabb<ndim> getAABB() const;
-
-  tri() {}
-  tri(vector_t _v[3]);
-  tri(const vector_t& a, const vector_t& b, const vector_t& c);
-
-  vector_t normal() const {
-    return cross(v[1] - v[0], v[2] - v[1]).normalized();
-  }
-};
-
-template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const vector<ndim>& v);
 template <unsigned ndim>
 std::ostream& operator<<(std::ostream& o, const carve::geom::plane<ndim>& p);
-template <unsigned ndim>
-std::ostream& operator<<(std::ostream& o, const carve::geom::tri<ndim>& tri);
-
-template <unsigned ndim>
-vector<ndim> closestPoint(const tri<ndim>& tri, const vector<ndim>& pt);
-template <unsigned ndim>
-double distance(const tri<ndim>& tri, const vector<ndim>& pt);
-template <unsigned ndim>
-double distance2(const tri<ndim>& tri, const vector<ndim>& pt);
-
 // ========================================================================
 struct distance_functor {
   template <typename obj1_t, typename obj2_t>

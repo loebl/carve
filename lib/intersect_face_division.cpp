@@ -1507,20 +1507,20 @@ void dumpAsGraph(
   for (std::map<carve::mesh::MeshSet<3>::vertex_t*, carve::geom2d::P2>::iterator
            i = proj.begin();
        i != proj.end(); ++i) {
-    std::cerr << "   " << ptrstr((*i).first) << " [pos=\"" << (*i).second.x
+    std::cerr << "   \"" << ptrstr((*i).first) << "\" [pos=\"" << (*i).second.x
               << "," << (*i).second.y << "!\"];\n";
   }
   for (carve::csg::V2Set::const_iterator i = face_edges.begin();
        i != face_edges.end(); ++i) {
-    std::cerr << "   " << ptrstr((*i).first) << " -- " << ptrstr((*i).second)
-              << ";\n";
+    std::cerr << "   \"" << ptrstr((*i).first) << "\" -- \"" << ptrstr((*i).second)
+              << "\";\n";
   }
   for (carve::csg::V2Set::const_iterator i = split_edges.begin();
        i != split_edges.end(); ++i) {
-    std::cerr << "   " << ptrstr((*i).first) << " -- " << ptrstr((*i).second)
-              << " [color=\"blue\"];\n";
+    std::cerr << "   \"" << ptrstr((*i).first) << "\" -- \"" << ptrstr((*i).second)
+              << "\" [color=\"blue\"];\n";
   }
-  std::cerr << "};\n";
+  std::cerr << "}\n";
 }
 
 void generateOneFaceLoop(
@@ -1757,7 +1757,7 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
 
     {
       std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-      assembleBaseLoop(face, data, base_loop);
+      assembleBaseLoop(face, data, base_loop, hooks);
 
       {
         std::vector<carve::geom2d::P2> projected;
@@ -1779,7 +1779,7 @@ size_t carve::csg::CSG::generateFaceLoops(carve::mesh::MeshSet<3>* poly,
       V2Set face_edges;
 
       std::vector<carve::mesh::MeshSet<3>::vertex_t*> base_loop;
-      assembleBaseLoop(face, data, base_loop);
+      assembleBaseLoop(face, data, base_loop, hooks);
 
       for (size_t j = 0, je = base_loop.size() - 1; j < je; ++j) {
         face_edges.insert(std::make_pair(base_loop[j + 1], base_loop[j]));

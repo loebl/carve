@@ -17,7 +17,6 @@ add_library(carve
             csg_collector.cpp
             edge.cpp
             face.cpp
-            geom.cpp
             geom2d.cpp
             geom3d.cpp
             intersect.cpp
@@ -37,6 +36,7 @@ add_library(carve
             tag.cpp
             timing.cpp
             triangulator.cpp
+            triangle.cpp
             triangle_intersection.cpp
             shewchuk_predicates.cpp)
 

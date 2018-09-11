@@ -69,8 +69,8 @@ Octree::Node::~Node() {
 
 bool Octree::Node::mightContain(const carve::poly::Face<3>& face) {
   if (face.nVertices() == 3) {
-    return aabb.intersects(carve::geom::tri<3>(
-        face.vertex(0)->v, face.vertex(1)->v, face.vertex(2)->v));
+    return aabb.intersects(carve::geom::tri<3>{
+        face.vertex(0)->v, face.vertex(1)->v, face.vertex(2)->v});
   } else {
     return aabb.intersects(face.aabb) && aabb.intersects(face.plane_eqn);
   }
