@@ -934,7 +934,7 @@ void carve::csg::CSG::generateIntersectionCandidates(
     meshset_t* a, const face_rtree_t* a_node, meshset_t* b,
     const face_rtree_t* b_node, face_pairs_t& face_pairs, bool descend_a) {
   if (!a_node->bbox.intersects(b_node->bbox)) {
-    return;
+    return; //return early if root boxes don't even touch
   }
 
   if (a_node->child && (descend_a || !b_node->child)) {
@@ -1342,7 +1342,7 @@ void carve::csg::CSG::calc(meshset_t* a, const face_rtree_t* a_rtree,
                            carve::csg::FaceLoopList& a_face_loops,
                            carve::csg::FaceLoopList& b_face_loops,
                            size_t& a_edge_count, size_t& b_edge_count) {
-  detail::Data data;
+  detail::Data data; //struct to collect all intersection information
 
 #if defined(CARVE_DEBUG)
   std::cerr << "init" << std::endl;
@@ -1785,7 +1785,7 @@ void carve::csg::CSG::slice(meshset_t* a, meshset_t* b,
 }
 
 /**
- *
+ * @brief Reset internal containers to empty state
  *
  */
 void carve::csg::CSG::init() {
